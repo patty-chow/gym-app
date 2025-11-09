@@ -7,12 +7,6 @@ import { fileStorage } from './fileStorage';
 // Storage mode - can be 'localStorage' or 'file'
 const STORAGE_MODE = (import.meta.env.VITE_STORAGE_MODE || 'localStorage') as 'localStorage' | 'file';
 
-// Debug logging
-console.log('🗄️ Storage Debug:');
-console.log('VITE_STORAGE_MODE from env:', import.meta.env.VITE_STORAGE_MODE);
-console.log('STORAGE_MODE resolved to:', STORAGE_MODE);
-console.log('All env vars:', import.meta.env);
-
 const GYMS_KEY = 'gym-app-gyms';
 const EQUIPMENT_KEY = 'gym-app-equipment';
 

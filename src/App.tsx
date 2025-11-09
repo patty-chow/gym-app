@@ -6,14 +6,9 @@ import { GymList, EquipmentList, AddGymModal, AddEquipmentModal } from './compon
 import './App.css'
 
 function App() {
-  // Debug info
+  // Storage mode detection
   const storageMode = import.meta.env.VITE_STORAGE_MODE || 'localStorage'
   const isFileMode = storageMode === 'file'
-  
-  console.log('🔧 Debug Info:')
-  console.log('Storage Mode:', storageMode)
-  console.log('Is File Storage:', isFileMode)
-  console.log('Environment:', import.meta.env)
 
   const [gyms, setGyms] = useState<Gym[]>([])
   const [selectedGym, setSelectedGym] = useState<Gym | null>(null)
@@ -48,18 +43,12 @@ function App() {
 
   const handleAddGym = async (gymData: Omit<Gym, 'id' | 'createdAt' | 'updatedAt'>) => {
     try {
-      console.log('🏋️ Adding gym with storage mode:', storageMode);
-      console.log('📁 Is file storage:', isFileMode);
-      console.log('🏢 Gym data:', gymData);
-      
       const newGym = await Promise.resolve(storage.addGym(gymData));
-      console.log('✅ Gym added successfully:', newGym);
-      
       setGyms(prev => [...prev, newGym]);
       setSelectedGym(newGym);
       setShowAddGym(false);
     } catch (error) {
-      console.error('❌ Failed to add gym:', error);
+      console.error('Failed to add gym:', error);
     }
   }
 
